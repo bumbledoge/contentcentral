@@ -13,22 +13,16 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/dashboard', [ArticleController::class, 'index'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/', [ArticleController::class, 'index'])->name('dashboard');
 
-Route::get('/article/{id}', function ($id) {
-    return 'articol cu id'.$id;
-});
+Route::get('article/{id}', [ArticleController::class, 'readArticle'])->name('toTheArticle');
 
 
-Route::get('/create-article', function () {
+Route::get('create-article', function () {
     return view('create-article');
-});
+})->name('create-article');
 
 Route::post('saveArticle', [ArticleController::class, 'createArticle'])->name('saveArticle');
 
@@ -36,5 +30,7 @@ Route::post('saveArticle', [ArticleController::class, 'createArticle'])->name('s
 Route::get('welcome', function () {
     return view('welcome');
 });
+
+Route::delete('deleteArticle', [ArticleController::class, 'deleteArticle'])->name('deleteArticle');
 
 require __DIR__.'/auth.php';

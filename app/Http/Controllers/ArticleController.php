@@ -7,7 +7,9 @@ use App\Models\Article;
 
 class ArticleController extends Controller
 {
-    //
+    public function index () {
+        return view('dashboard', ['articles' => Article::all()]);
+    }
 
     public function createArticle(Request $request) {
 
@@ -22,5 +24,18 @@ class ArticleController extends Controller
         $newArticle->save();
         
         return view('dashboard');
+    }
+
+    public function readArticle($id) {
+
+        $data = Article::find($id);
+        return view('article', compact('data'));
+    }
+
+    public function deleteArticle(Request $request) {
+        $article = Article::find($request->id);
+        $res = $article->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Record deleted successfully');
     }
 }
