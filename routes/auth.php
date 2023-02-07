@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticleController;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -53,4 +54,14 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+
+    Route::get('article/{id}', [ArticleController::class, 'readArticle'])->name('toTheArticle');
+    Route::get('create-article', function () {
+        return view('create-article');
+    })->name('create-article');
+    Route::delete('deleteArticle', [ArticleController::class, 'deleteArticle'])->name('deleteArticle');
+    Route::delete('editArticle', [ArticleController::class, 'editArticle'])->name('editArticle');
+    Route::post('saveArticle', [ArticleController::class, 'createArticle'])->name('saveArticle');
+    
+
 });

@@ -17,20 +17,13 @@ Route::get('/dashboard', [ArticleController::class, 'index'])->name('dashboard')
 
 Route::get('/', [ArticleController::class, 'index'])->name('dashboard');
 
-Route::get('article/{id}', [ArticleController::class, 'readArticle'])->name('toTheArticle');
 
 
-Route::get('create-article', function () {
-    return view('create-article');
-})->name('create-article');
 
-Route::post('saveArticle', [ArticleController::class, 'createArticle'])->name('saveArticle');
 
 
 Route::get('welcome', function () {
     return view('welcome');
 });
-
-Route::delete('deleteArticle', [ArticleController::class, 'deleteArticle'])->name('deleteArticle');
 
 require __DIR__.'/auth.php';

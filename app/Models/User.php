@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -41,4 +42,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isEditor() {
+        if($this->role_id === 4)
+        { 
+            return true; 
+        } 
+        else 
+        { 
+            return false; 
+        }
+    }
 }

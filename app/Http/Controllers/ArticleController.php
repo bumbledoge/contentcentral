@@ -23,7 +23,7 @@ class ArticleController extends Controller
 
         $newArticle->save();
         
-        return view('dashboard');
+        return redirect()->route('dashboard')->with('success', 'Record deleted successfully');
     }
 
     public function readArticle($id) {
@@ -37,5 +37,9 @@ class ArticleController extends Controller
         $res = $article->delete();
 
         return redirect()->route('dashboard')->with('success', 'Record deleted successfully');
+    }
+
+    public function editArticle(Request $request) {
+        $article = Article::edit($request->id);
     }
 }
