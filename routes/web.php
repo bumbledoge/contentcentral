@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ArticleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +24,14 @@ Route::get('/dashboard', function () {
 Route::get('/article/{id}', function ($id) {
     return 'articol cu id'.$id;
 });
+
+
+Route::get('/create-article', function () {
+    return view('create-article');
+});
+
+Route::post('saveArticle', [ArticleController::class, 'createArticle'])->name('saveArticle');
+
 
 Route::get('welcome', function () {
     return view('welcome');

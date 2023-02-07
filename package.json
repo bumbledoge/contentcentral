@@ -7,7 +7,8 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "clean": "php artisan cache:clear && php artisan config:cache"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
