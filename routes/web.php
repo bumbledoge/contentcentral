@@ -17,6 +17,10 @@ Route::get('/dashboard', [ArticleController::class, 'index'])->name('dashboard')
 
 Route::get('/', [ArticleController::class, 'index'])->name('dashboard');
 
+Route::get('unauthorized', function () {
+    return view('unauthorized');
+});
+
 
 
 

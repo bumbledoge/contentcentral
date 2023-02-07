@@ -55,13 +55,13 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 
-    Route::get('article/{id}', [ArticleController::class, 'readArticle'])->name('toTheArticle');
+    Route::get('article/{id}', [ArticleController::class, 'readArticle'])->name('toTheArticle')->middleware('cititor');
     Route::get('create-article', function () {
         return view('create-article');
-    })->name('create-article');
-    Route::delete('deleteArticle', [ArticleController::class, 'deleteArticle'])->name('deleteArticle');
+    })->name('create-article')->middleware('autor');
     Route::delete('editArticle', [ArticleController::class, 'editArticle'])->name('editArticle');
     Route::post('saveArticle', [ArticleController::class, 'createArticle'])->name('saveArticle');
+    Route::delete('deleteArticle', [ArticleController::class, 'deleteArticle'])->name('deleteArticle')->middleware('editor');
     
-
+    
 });
